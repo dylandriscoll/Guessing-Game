@@ -1,9 +1,3 @@
-//Programmer: Dylan Driscoll
-//CS 145
-//Date: 1/9/23
-//Assignment: Lab 1 Guessing Game 
-
-
 /*This program will allow the user to play a guessing game. It will first prompt the user to ask what range
 of numbers they would like to play with and then start a game. If the user inputs something other than
 a number or a negative number or a number outside the range they have selected. They will be forced to enter
@@ -39,12 +33,13 @@ public class GuessingGame {
             playAgain = playAgain(play);
             gamesplayed++;
         }/*this loop is the one we are required to have in main
-        //it counts number of games played and accepts the return
-        //from my playonegame method.*/
+        it counts number of games played and accepts the return
+        from my playonegame method.*/
         for (int i: scores) {
             guessTotal += i;
         }/*this calculates the sum of all elements in my list which will be
-        //the total number of guess through all the games the user plays.*/
+        the total number of guess through all the games the user plays.*/
+        
         int bestScore = Collections.min(scores);
         double averageScore = averageScore(guessTotal, gamesplayed);
         for (int i: ranges) {
@@ -55,7 +50,7 @@ public class GuessingGame {
         returnData(bestScore, gamesplayed, guessTotal, 
         averageScore, highestRange, averageRange);
         /*this method call prints the data for the user when they 
-        //are done playing.*/
+        are done playing.*/
     }
     public static void introduction() {
         System.out.println("This program allows you to"); 
@@ -73,6 +68,7 @@ public class GuessingGame {
         System.out.println("don't wish to, I will report the stats");
         System.out.println("from your play session");
     } //this method introduces the game to user
+    
     public static int range(Scanner input) {
         String highRange = "";
         boolean intCheck = intCheck(highRange);
@@ -98,12 +94,8 @@ public class GuessingGame {
             }
         } while (intCheck == false);
         return Integer.parseInt(highRange);
-    }/*this method is for prompting the user to decide on a max number for their game.
-    //it has different print statements to relay information to the user depending on
-    //what the problem was with their input. It was tough to get this to work for cases
-    //where the user inputs an error causing input repeatedly. It might be a little
-    //bit overly complicated but since its working and I'm out of time I'm sticking\
-    //with it.*/
+    }
+    
     public static boolean intCheck(String highRange) {
         Scanner intChecker = new Scanner(highRange);
         if (intChecker.hasNextInt()) {
@@ -113,6 +105,7 @@ public class GuessingGame {
         }
     }/*this method is simply using a scanner to check the string of either
     //the range input or the guess input to make sure it contains an integer.*/
+    
     public static int guessCheck(String guess) {
         Scanner guessChecker = new Scanner(guess);
         if (guessChecker.hasNextInt()) {
@@ -130,9 +123,6 @@ public class GuessingGame {
             String guess = "-1";
             Random rand = new Random();
             int answer = 1 + rand.nextInt(highRange);
-            /*you can uncomment the line below if you want to use it to grade.
-            //it will print the answer so its easier to play the game quickly.*/
-            //System.out.println(answer);
             System.out.printf("\n\nI'm thinking of a number"); 
             System.out.println("between 1 and " + highRange + "...");
 
@@ -166,14 +156,9 @@ public class GuessingGame {
             }
         }
         return attempts;
-    }/*this is my play one game method. it first sets the string play equal
-    //to y to make sure it runs. it uses while and if else to decide
-    //what information to give to the user as they are playing
-    //when the user finishes one game it sets play equal to n so that
-    //the user can be asked if they want to play again.
-    //this method is largely the same as it was originally but I added
-    //some print statements to catch bad inputs that the user might be 
-    //putting in and put them back on the right track.*/
+    }
+    /*This method will play one game with the user.*/
+    
     public static double averageScore(double totalGuesses, double gamesplayed) {
         double averageScore = totalGuesses / gamesplayed;
         return averageScore;
@@ -181,6 +166,7 @@ public class GuessingGame {
     //and return a double which will be my users average score
     //since the math is the same, I also use this method to calculate the 
     //average range.*/ 
+    
     public static void returnData(int bestScore, int totalGamesPlayed, int totalGuesses, 
     double averageScore, int highestRange, double averageRange) {
         System.out.printf("\n\nOverall results");
@@ -194,16 +180,12 @@ public class GuessingGame {
     }/*this method will print out all the data for the user
     //that we are required to store. it is passed the data
     //in 6 parameters.*/
+    
     public static boolean playAgain(String play) {
         if (play.startsWith("y")) {
             return true;
         } else {
             return false;
         }    
-    }/*this method simply accepts the string that the user is 
-     //prompted for when asked if they want to play again. I 
-     //have the string converted to lower case  before it gets
-     //here and this just checks if it starts with y and returns
-     //a boolean. A return of false will break the do whil loop
-     //and move on to reporting stats.*/
+    }
 }
